@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Entry fee:</strong>
+  <%= @event.entry_fee %>
+</p>
+
+<p>
+  <strong>Start datetime:</strong>
+  <%= @event.start_datetime %>
+</p>
+
+<p>
+  <strong>End datetime:</strong>
+  <%= @event.end_datetime %>
+</p>
+
+<p>
+  <strong>No participants:</strong>
+  <%= @event.no_participants %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @event.location %>
+</p>
+
+<p>
+  <strong>Fest:</strong>
+  <%= Fest.find(@event.fest_id).name %>
+</p>
+
+<h3>Register Here </h3>
+<% @registration = Registration.new %>
+<%= form_for(@registration) do |form| %>
+  <% if @registration.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@registration.errors.count, "error") %> prohibited this registration from being saved:</h2>
+      <ul>
+      <% @registration.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :email %><br>
+    <%= form.text_field :email %>
+  </div>
+  <div class="field">
+    <%= form.label :college %><br>
+    <%= form.text_field :college %>
+  </div>
+  <div class="field">
+    <%= form.hidden_field :event_id, value: @event.id %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Register here" %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

@@ -1,0 +1,10 @@
+<h2>Listing Fests</h2>
+<ul>
+<% @fests.each do |fest| %>
+	<li>
+		<%= fest.name %> begins on <%= fest.start_date.strftime("%A, %d %B %Y") %> till <%= fest.end_date.strftime("%A, %d %B %Y") %>
+	</li>
+<% end %>
+</ul>
+
+<a href="/fests/new"> Add Fest</a>
