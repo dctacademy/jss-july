@@ -130,6 +130,17 @@
 
             </div>
 
+
+      <div class="col-md-4">
+        <div class="well">
+          <h2>Registrations</h2>
+          <ul>
+            <% Registration.where('event_id = ?', @event.id ).each do |registration| %>
+              <li><%= registration.name %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
            
         </div>
         <!-- /.row -->
